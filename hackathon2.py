@@ -98,9 +98,9 @@ def speak(): #It takes ur mic input
     try:
         with sr.Microphone() as source2:
             srr.adjust_for_ambient_noise(source2,duration=0.7)
-            print(spec)
-            SpeakText(spec)
-            time.sleep(0.1)
+            BotText = "Speak"
+            print(BotText)
+            SpeakText(BotText)
             audio2=srr.listen(source2)
             MyText = ""
             try:
@@ -108,7 +108,7 @@ def speak(): #It takes ur mic input
             except sr.UnknownValueError as u:
                 pass
             MyText=MyText.lower()
-            usertext == MyText
+            usertext = MyText
             print(usertext)
             print("Stop")
             return MyText
@@ -125,8 +125,8 @@ time.sleep(0.3)
 print("Made By: Aaryamaan Saini, Agastya Gupta, Saksham Gupta")
 SpeakText("Made By Aaryamaan Saini, Agastya Gupta, Saksham Gupta")
 time.sleep(0.3)
-usertext="gayppldeserverights"
-BotText="gayppldeserverights"
+usertext=""
+BotText=""
 
 from tkinter import *
 import tkinter as tk
@@ -148,8 +148,180 @@ class GiveCommands:
     pass
 
 
+def ListenToUser():
+    Input = speak()
 
+    
+    spec = "Speak"
 
+# To add the command put under this while true loop, put an elif saying (elif "command" in Input:)
+    cless = {'8:30':'Form Time',
+     '9:00':"Lesson 1",
+     "10:00":"Lesson 2",
+     "11:00":"Lesson 3",
+     "12:00":"Lesson 4",
+     "13:35":"Lesson 5",
+     "14:25":"Lesson 6",
+     "19:37":"Test"}
+     
+    timone = str(current_time.hour)+":"+str(current_time.minute)
+    
+    for timmy, cLass in cless.items():
+        if timone == timmy:
+            amogus = "Time for, "+cLass
+            print(amogus)
+            SpeakText(amogus)
+    if "school" in Input: #If you say school then this happens
+        print("Opening School Related Tabs")
+        SpeakText("Opening school related tabs")
+        webbrowser.open('https://classroom.google.com/u/0/h')
+        time.sleep(0.5)
+        webbrowser.open('https://teams.microsoft.com/')
+        time.sleep(0.5)
+        webbrowser.open('https://docs.google.com/document/u/0/?tgif=d')
+        time.sleep(0.5)
+        webbrowser.open('https://outlook.office365.com/owa/?realm=pathways.in&exsvurl=1&ll-cc=1033&modurl=0')
+        time.sleep(0.5)
+        webbrowser.open('https://psn.wizemen.net/')
+        time.sleep(0.5)
+        webbrowser.open('https://drive.google.com/drive/u/0/')
+        time.sleep(5)
+        print("Restarting Program")
+        SpeakText("Restarting Program")
+        time.sleep(0.3)
+    elif "time" in Input: #Says the time
+        pm = False
+        am = ""
+        currtime = 0
+        print("Year:", current_time.year)
+        time.sleep(0.2)
+        print("Month:", current_time.month)
+        time.sleep(0.2)
+        print("Day:", current_time.day)
+        date = "The Day is:",current_time.day,"of the month",current_time.month,"and is the year",current_time.year
+        SpeakText(date)
+        time.sleep(1)
+        if current_time.hour > 12:
+            currtime = current_time.hour - 12
+            pm = True
+        else:
+            currtime = current_time.hour
+        if pm == True:
+            am = "pm"
+        else:
+            am = "am"
+        currtime = str(currtime)
+        timone = currtime, current_time.minute,am,"and",current_time.second,"seconds"
+        print(currtime+":"+str(current_time.minute)+":"+str(current_time.second))
+        SpeakText(timone)
+        
+        time.sleep(5)
+        print("Restarting Program")
+        SpeakText("Restarting Program")
+        time.sleep(0.3)
+    elif 'youtube' in Input:
+        print("Opening Youtube...")
+        SpeakText("opening youtube")
+        webbrowser.open("https://www.youtube.com")
+        time.sleep(5)
+        print("Restarting Program")
+        SpeakText("Restarting Program")
+        time.sleep(0.3)
+
+    elif 'google' in Input:
+        print("What do you want to search?")
+        SpeakText("what do you want to search")
+        query = speak()
+        GoogleSearchResults(query)
+
+        time.sleep(15)
+        print("Restarting Program")
+        SpeakText("Restarting Program")
+        time.sleep(0.3)
+
+    elif 'gmail' in Input:
+        print("Opening Gmail...")
+        SpeakText("opening gmail")
+        webbrowser.open("https://www.gmail.com")
+        
+        time.sleep(5)
+        print("Restarting Program")
+        SpeakText("Restarting Program")
+        time.sleep(0.3)
+    elif 'voice' in Input:
+        print("You can change my voice to male or female")
+        SpeakText("You can change my voice to male or female")
+        time.sleep(0.2)
+        print("Say female to change my voice to female, or say male to change my voice to male")
+        SpeakText("say female to change my voice to female, or say male to change my voice to male")
+        gender = speak()
+        if 'mail' in gender:
+            engine.setProperty('voice', voices[len(voices)-3].id)
+        elif 'female' in gender:
+            engine.setProperty('voice', voices[len(voices)-2].id)
+        else:
+            print("Invalid input")
+            SpeakText("invalid input")
+        time.sleep(5)
+        print("Restarting Program")
+        SpeakText("Restarting Program")
+        time.sleep(0.3)
+    elif 'zoom' in Input:
+        print("What is the meeting name?")
+        SpeakText("What is the meeting name")
+        name = speak()
+        time.sleep(0.2)
+        duration = 40
+        time.sleep(0.2)
+        print("What is the meeting agenda?")
+        SpeakText("What is the meeting agenda")
+        agenda = speak()
+        time.sleep(0.2)
+        finaldate = str(current_time.year)+"-"+str(current_time.month)+"-"+str(current_time.day)+"T"+str(current_time.hour)+": "+str(current_time.minute)+": "+str(current_time.second)
+        print(CreateZoomMeeting(name,duration,agenda,finaldate))
+        SpeakText("zoom meeting made")
+        time.sleep(5)
+        print("Restarting Program")
+        SpeakText("Restarting Program")
+        time.sleep(0.3)
+        
+    elif 'stop' in Input:
+        print("Good Bye!")
+        SpeakText("good bye")
+        time.sleep(0.2)
+    elif 'pause' in Input:
+        print("Press Space Bar to continue")
+        SpeakText("Press Space Bar To Continue")
+        while True:
+            cless = {'8:30':'Form Time',
+                     '9:00':"Lesson 1",
+                     "10:00":"Lesson 2",
+                     "11:00":"Lesson 3",
+                     "12:00":"Lesson 4",
+                     "13:35":"Lesson 5",
+                     "14:25":"Lesson 6",
+                     "19:37":"Test"}
+     
+            timone = str(current_time.hour)+":"+str(current_time.minute)
+    
+            for timmy, cLass in cless.items():
+                if timone == timmy:
+                    amogus = "Time for, "+cLass
+                    print(amogus)
+                    SpeakText(amogus)
+            if keyboard.is_pressed("space"):
+                break
+        time.sleep(2)
+        print("Restarting Program")
+        SpeakText("Restarting Program")
+        time.sleep(0.3)
+
+    else:
+        print("I did not understand, please try again")
+        SpeakText("I did not understand, please try again")
+        time.sleep(0.5)
+
+            
 
 
 
@@ -171,7 +343,7 @@ imTk1 =  ImageTk.PhotoImage(im1)
 
 
 Recording = canvas.create_image((400,50), anchor="nw", image=imTk)
-canvas.tag_bind(Recording, '<Button-1>', RecordButtonPressed(True))
+canvas.tag_bind(Recording, '<Button-1>', lambda x: ListenToUser())
 
 
 SettingsButton=Button(root, text="Settings", command=GiveCommands)
@@ -197,184 +369,6 @@ BotTextShow.insert(tk.END, " ")
 
 tk.mainloop()
 
-
-
-
-e = True
-    
-if e == True:
-    if RecQuestionState == True:
-        Input = speak()
-
-        
-        spec = "Speak"
-
-  # To add the command put under this while true loop, put an elif saying (elif "command" in Input:)
-        cless = {'8:30':'Form Time',
-         '9:00':"Lesson 1",
-         "10:00":"Lesson 2",
-         "11:00":"Lesson 3",
-         "12:00":"Lesson 4",
-         "13:35":"Lesson 5",
-         "14:25":"Lesson 6",
-         "19:37":"Test"}
-         
-        timone = str(current_time.hour)+":"+str(current_time.minute)
-        
-        for timmy, cLass in cless.items():
-            if timone == timmy:
-                amogus = "Time for, "+cLass
-                print(amogus)
-                SpeakText(amogus)
-        if "school" in Input: #If you say school then this happens
-            print("Opening School Related Tabs")
-            SpeakText("Opening school related tabs")
-            webbrowser.open('https://classroom.google.com/u/0/h')
-            time.sleep(0.5)
-            webbrowser.open('https://teams.microsoft.com/')
-            time.sleep(0.5)
-            webbrowser.open('https://docs.google.com/document/u/0/?tgif=d')
-            time.sleep(0.5)
-            webbrowser.open('https://outlook.office365.com/owa/?realm=pathways.in&exsvurl=1&ll-cc=1033&modurl=0')
-            time.sleep(0.5)
-            webbrowser.open('https://psn.wizemen.net/')
-            time.sleep(0.5)
-            webbrowser.open('https://drive.google.com/drive/u/0/')
-            time.sleep(5)
-            print("Restarting Program")
-            SpeakText("Restarting Program")
-            time.sleep(0.3)
-        elif "time" in Input: #Says the time
-            pm = False
-            am = ""
-            currtime = 0
-            print("Year:", current_time.year)
-            time.sleep(0.2)
-            print("Month:", current_time.month)
-            time.sleep(0.2)
-            print("Day:", current_time.day)
-            date = "The Day is:",current_time.day,"of the month",current_time.month,"and is the year",current_time.year
-            SpeakText(date)
-            time.sleep(1)
-            if current_time.hour > 12:
-                currtime = current_time.hour - 12
-                pm = True
-            else:
-                currtime = current_time.hour
-            if pm == True:
-                am = "pm"
-            else:
-                am = "am"
-            currtime = str(currtime)
-            timone = currtime, current_time.minute,am,"and",current_time.second,"seconds"
-            print(currtime+":"+str(current_time.minute)+":"+str(current_time.second))
-            SpeakText(timone)
-            
-            time.sleep(5)
-            print("Restarting Program")
-            SpeakText("Restarting Program")
-            time.sleep(0.3)
-        elif 'youtube' in Input:
-            print("Opening Youtube...")
-            SpeakText("opening youtube")
-            webbrowser.open("https://www.youtube.com")
-            time.sleep(5)
-            print("Restarting Program")
-            SpeakText("Restarting Program")
-            time.sleep(0.3)
-
-        elif 'google' in Input:
-            print("What do you want to search?")
-            SpeakText("what do you want to search")
-            query = speak()
-            GoogleSearchResults(query)
-
-            time.sleep(15)
-            print("Restarting Program")
-            SpeakText("Restarting Program")
-            time.sleep(0.3)
-
-        elif 'gmail' in Input:
-            print("Opening Gmail...")
-            SpeakText("opening gmail")
-            webbrowser.open("https://www.gmail.com")
-            
-            time.sleep(5)
-            print("Restarting Program")
-            SpeakText("Restarting Program")
-            time.sleep(0.3)
-        elif 'voice' in Input:
-            print("You can change my voice to male or female")
-            SpeakText("You can change my voice to male or female")
-            time.sleep(0.2)
-            print("Say female to change my voice to female, or say male to change my voice to male")
-            SpeakText("say female to change my voice to female, or say male to change my voice to male")
-            gender = speak()
-            if 'mail' in gender:
-                engine.setProperty('voice', voices[len(voices)-3].id)
-            elif 'female' in gender:
-                engine.setProperty('voice', voices[len(voices)-2].id)
-            else:
-                print("Invalid input")
-                SpeakText("invalid input")
-            time.sleep(5)
-            print("Restarting Program")
-            SpeakText("Restarting Program")
-            time.sleep(0.3)
-        elif 'zoom' in Input:
-            print("What is the meeting name?")
-            SpeakText("What is the meeting name")
-            name = speak()
-            time.sleep(0.2)
-            duration = 40
-            time.sleep(0.2)
-            print("What is the meeting agenda?")
-            SpeakText("What is the meeting agenda")
-            agenda = speak()
-            time.sleep(0.2)
-            finaldate = str(current_time.year)+"-"+str(current_time.month)+"-"+str(current_time.day)+"T"+str(current_time.hour)+": "+str(current_time.minute)+": "+str(current_time.second)
-            print(CreateZoomMeeting(name,duration,agenda,finaldate))
-            SpeakText("zoom meeting made")
-            time.sleep(5)
-            print("Restarting Program")
-            SpeakText("Restarting Program")
-            time.sleep(0.3)
-            
-        elif 'stop' in Input:
-            print("Good Bye!")
-            SpeakText("good bye")
-            time.sleep(0.2)
-        elif 'pause' in Input:
-            print("Press Space Bar to continue")
-            SpeakText("Press Space Bar To Continue")
-            while True:
-                cless = {'8:30':'Form Time',
-                         '9:00':"Lesson 1",
-                         "10:00":"Lesson 2",
-                         "11:00":"Lesson 3",
-                         "12:00":"Lesson 4",
-                         "13:35":"Lesson 5",
-                         "14:25":"Lesson 6",
-                         "19:37":"Test"}
-         
-                timone = str(current_time.hour)+":"+str(current_time.minute)
-        
-                for timmy, cLass in cless.items():
-                    if timone == timmy:
-                        amogus = "Time for, "+cLass
-                        print(amogus)
-                        SpeakText(amogus)
-                if keyboard.is_pressed("space"):
-                    break
-            time.sleep(2)
-            print("Restarting Program")
-            SpeakText("Restarting Program")
-            time.sleep(0.3)
-
-        else:
-            print("I did not understand, please try again")
-            SpeakText("I did not understand, please try again")
-            time.sleep(0.5)
 
 
 
