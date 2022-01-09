@@ -1,2 +1,2 @@
-# PSN hACKTHOn 2022
- amogus
+# PSN Hackathon 2022
+ Our Project for this hackathon
